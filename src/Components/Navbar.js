@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import logoImg from '../image/logo.svg';
+import loginImg from '../image/sign.svg';
 
 const NavBarStyled = styled.header`
   position: fixed;
@@ -33,14 +34,22 @@ const ImgLogo = styled.img`
 
 const LoginBtn = styled.button`
   border: none;
-  background-color: #f5f3d4;
-  padding: 5px 30px;
-  font-size: 20px;
+  border-radius: 5px;
+  background-color: transparent;
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 14px;
   transition: all 0.3s;
   :hover {
     background-color: blue;
     color: #f0f0f0;
   }
+`;
+
+const ImgLogin = styled.img`
+  width: 30px;
+  display: block;
+  margin: 0 auto;
 `;
 
 export const NavBar = () => (
@@ -49,6 +58,9 @@ export const NavBar = () => (
       <ImgLogo src={logoImg} alt="logo"/>
       <H1>MrDonald's</H1>
     </Logo>
-    <LoginBtn>войти</LoginBtn>
+    <LoginBtn>
+      <ImgLogin src={loginImg} alt="logo"/>
+      войти
+    </LoginBtn>
   </NavBarStyled>
 );
