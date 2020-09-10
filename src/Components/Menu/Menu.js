@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { ListItem } from '../Menu/ListItem';
 import { Banner } from '../Menu/Banner';
 import { Preloader } from './Preloader';
-// import { useFetch } from '../Hooks/useFetch';
+import { useFetch } from '../Hooks/useFetch';
+import { Context } from '../Functions/context';
 
 const MenuStyled = styled.main`
   background-color: #ccc;
@@ -15,15 +16,15 @@ const SectionMenu = styled.section`
   padding: 30px;
 `;
 
-export const Menu = ({ setOpenItem, dbMenu }) => {
-
-  // const res = useFetch();
-  // const dbMenu = res.response;
+export const Menu = () => {
+  const { openItem: { setOpenItem }} = useContext(Context);
+  const res = useFetch();
+  const dbMenu = res.response;
 
   return (
     <MenuStyled>
       <Banner/>
-      {dbMenu ?
+      {res.response ?
       <>
         <SectionMenu>
           <h2>Бургеры</h2>
@@ -40,7 +41,8 @@ export const Menu = ({ setOpenItem, dbMenu }) => {
             setOpenItem={setOpenItem}
           />
         </SectionMenu>
-      </> :
+      </> : res.error ?
+      <div>Извините, произошла ошибка...</div> :
       <Preloader/>
       }
     </MenuStyled>

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ButtonCheckout = styled.button`
-  display: bloсk;
+  display: block;
   margin: 0 auto;
   width: 250px;
   height: 65px;
