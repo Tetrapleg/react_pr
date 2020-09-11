@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { ButtonCheckout } from '../Style/ButtonCheckout';
 import { OrderListItem } from '../Order/OrderListItem';
-import { totalPriceItems } from '../Functions/secondaryFunction';
-import { formatCurrency } from '../Functions/secondaryFunction';
+import { totalPriceItems, formatCurrency } from '../Functions/secondaryFunction';
+import { Context } from '../Functions/context';
 
 const  OrderStyled = styled.section`
   position: fixed;
@@ -47,14 +47,13 @@ const EmptyList = styled.p`
   text-align: center;
 `;
 
-export const Order = ({ 
-  orders, 
-  setOrders, 
-  setOpenItem, 
-  authentification, 
-  logIn,
-  setOpenOrderConfirm
-}) => {
+export const Order = () => {
+
+  const {
+    auth: { authentification, logIn },
+    orders: { orders, setOrders },
+    orderConfirm: { setOpenOrderConfirm },
+  } = useContext(Context);
 
   const deleteItem = index => {
     const newOrders = orders.filter((item, i) =>
@@ -80,23 +79,28 @@ export const Order = ({
             order={order}
             deleteItem={deleteItem}
             index={index}
-            setOpenItem={setOpenItem}
           />)}
         </OrderList> :
         <EmptyList>Список заказов пуст.</EmptyList>}
       </OrderContent>
-      <Total>
-        <span>Итого</span>
-        <span>{totalCounter}</span>
-        <TotalPrice>{formatCurrency(total)} </TotalPrice>
-      </Total>
-      <ButtonCheckout onClick={() => {
-        if (authentification) {
-          setOpenOrderConfirm(true);
-        } else {
-          logIn()
-        }
-      }}>Оформить</ButtonCheckout>
+      {orders.length ?
+        <>
+          <Total>
+            <span>Итого</span>
+            <span>{totalCounter}</span>
+            <TotalPrice>{formatCurrency(total)} </TotalPrice>
+          </Total>
+          <ButtonCheckout onClick={() => {
+            if (authentification) {
+              setOpenOrderConfirm(true);
+            } else {
+              logIn()
+            }
+          }}>Оформить</ButtonCheckout>
+        </> :
+        null
+
+      }
     </OrderStyled>
   )
 }
