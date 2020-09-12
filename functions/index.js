@@ -10,16 +10,14 @@ const transporter = nodemailer.createTransport({
     pass: password,
   }
 });
-console.log(email, password);
 
 transporter. use('compile', htmlToText());
 
 const sendOrderEmail = data => {
-  console.log(data);
-  console.log(data.order[0].topping);
+
   const options = {
     from: `MRDonald's <${email}>`,
-    to: 'rufmama@yandex.ru',
+    to: data.email,
     subject: `Ваш заказ из MRDonald's`,
     html:`
       <div>
