@@ -25,17 +25,21 @@ const sendOrderEmail = data => {
         <h3>Заказ:</h3>
         <ul>
           ${data.order.map(({ itemName, count, price, choice, topping }) => (
-            `<li>${itemName} - ${count}шт., цена ${topping !== 'no toppings' ? 
-                (price + price * 0.1 * topping.lenght) * count : price * count} руб.
+            `<li>${itemName} - ${count}шт., цена ${(topping !== 'no toppings' ? 
+                price * (1 + 0.1 * topping.length) * count :
+                price * count).toFixed(2)} руб.
+                <br>
                 <small>
-                  ${choice !== 'no choices' ? choice : null} 
-                  ${topping !== 'no toppings' ? topping.join(',') : null}
+                  ${choice !== 'no choices' ? choice.toLowerCase() : ''} 
+                  ${topping !== 'no toppings' ? topping.join(',').toLowerCase() : ''}
                 </small>
             </li>`
           ))}
         </ul>
         <p>Итого: ${data.order.reduce((sum, item) =>
-          sum + (item.price * item.count), 0)} руб.</p>
+          sum + (item.topping !== 'no toppings' ? 
+            item.price * (1 + 0.1 * item.topping.length) * item.count :
+            item.price * item.count), 0).toFixed(2)} руб.</p>
         <small>Ожидайте курьера.</small>
       </div>
     `,
