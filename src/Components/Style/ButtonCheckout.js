@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from '../Style/Adaptive';
 
 export const ButtonCheckout = styled.button`
   display: block;
@@ -22,5 +23,9 @@ export const ButtonCheckout = styled.button`
     color: #bbb;
     background-color: #ccc;
     border-color: #aaa;
+  }
+
+  @media ${device.tablet} { 
+    width: 80%;
   }
 `;

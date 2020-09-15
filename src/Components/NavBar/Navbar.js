@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import logoImg from '../../image/logo.svg';
 import loginImg from '../../image/sign.svg';
 import { Context } from '../Functions/context';
+import { device } from '../Style/Adaptive';
 
 const NavBarStyled = styled.header`
   position: fixed;
@@ -27,6 +28,11 @@ const Logo = styled.div`
 const H1 = styled.h1`
   font-size: 24px;
   margin-left: 15px;
+
+  @media ${device.mobileL} { 
+    margin: 0 10px;
+    font-size: 1rem;
+  }
 `;
 
 const ImgLogo = styled.img`
@@ -64,10 +70,19 @@ const LogOut = styled.span`
   font-weight: 700px;
   cursor: pointer;
   margin-right: 30px;
+  
+  @media ${device.mobileL} { 
+    margin-right: 10px;
+  }
 `;
 
 const Figure = styled.figure`
   margin: 0 30px;
+
+  @media ${device.tablet} { 
+    margin: 0 0 0 10px;
+    font-size: 1rem;
+  }
 `;
 
 export const NavBar = () => {

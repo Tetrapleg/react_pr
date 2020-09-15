@@ -4,6 +4,7 @@ import { ButtonCheckout } from '../Style/ButtonCheckout';
 import { OrderListItem } from '../Order/OrderListItem';
 import { totalPriceItems, formatCurrency } from '../Functions/secondaryFunction';
 import { Context } from '../Functions/context';
+import { device } from '../Style/Adaptive';
 
 const  OrderStyled = styled.section`
   position: fixed;
@@ -15,7 +16,17 @@ const  OrderStyled = styled.section`
   width: 380px;
   height: calc(100% - 80px);
   box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.25);
-  padding: 20px
+  padding: 20px;
+
+  @media ${device.tablet} { 
+    width: 50%;
+  }
+
+  @media ${device.mobileL} { 
+    position: static;
+    margin-top: 80px;
+    width: 100%;
+  }
 `;
 
 export const OrderTitle = styled.h2`
@@ -34,6 +45,14 @@ export const Total = styled.div`
   margin: 0 35px 30px;
   & span:first-child {
     flex-grow: 1;
+  }
+
+  @media ${device.tablet} { 
+    margin: 0 auto 30px;
+  }
+
+  @media ${device.mobileL} { 
+    margin: 20px auto 20px;
   }
 `;
 
