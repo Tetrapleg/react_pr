@@ -11,7 +11,6 @@ import { useOpenItem } from './Components/Hooks/useOpenItem';
 import { useOrders } from './Components/Hooks/useOrders';
 import { useAuth } from './Components/Hooks/useAuth';
 import { useTitle } from './Components/Hooks/useTitle';
-import './App.css';
 import { OrderConfirm } from './Components/Order/OrderConfirm';
 import { useOrderConfirm } from './Components/Hooks/useOrderConfirm';
 import { Context } from './Components/Functions/context';
